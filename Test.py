@@ -18,11 +18,11 @@ pygame.draw.rect(screen,(255,255,255),(width/2 +  road_w/2 - road_mark*3, 0, roa
 
 
 pygame.display.update()
-tree = pygame.image.load('boll.png')
+tree = pygame.image.load('sprites/boll.png')
 tree_loc = tree.get_rect()
 tree_loc.center = width/2 + road_w/4, height*0.8
 
-enemy_boll = pygame.image.load('boll2.png')
+enemy_boll = pygame.image.load('sprites/boll2.png')
 enemy_boll_loc = tree.get_rect()
 enemy_boll_loc.center = left_lane, height*0.2
 a = 1
