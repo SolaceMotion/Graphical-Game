@@ -1,11 +1,11 @@
 import pygame as p
 from game import Game
 
+
 class Application:
     def __init__(self, width: int, height: int, clock: p.time.Clock) -> None:
         self.__running = True
         self.clock = clock
-        self.game = Game(clock)
         self.width = width
         self.height = height
         self.resolution = (width, height)
@@ -14,10 +14,11 @@ class Application:
         self.game = Game(self.clock)
 
     def run(self):
+        self.init_game()
         screen = p.display.set_mode(self.resolution)
         while self.is_running:
-            screen.fill((0,0,0))
-            self.game.tick()
+            screen.fill((0, 0, 0))
+            self.game.tick(screen)
             p.display.flip()
             for event in p.event.get():
                 if event.type == p.QUIT:
