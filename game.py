@@ -22,7 +22,6 @@ class Game:
 
     def tick(self, screen: p.Surface):
         if self.state == State.ON_MAP:
-
             self.clock.tick(self.fps)
             dt = self.update_time()
             keys_pressed = self.read_input()
@@ -38,7 +37,6 @@ class Game:
 
     def handle_movement(self, pressed, dt: float):
         door = False
-
         map = self.current_level.map
 
         if pressed[p.K_UP]    : door = self.player.move(Direction.UP, dt, map)
@@ -48,15 +46,10 @@ class Game:
 
         if door: self.change_lvl(self.current_level.get_bordering(door))
 
-
-
     def read_input(self):
         return p.key.get_pressed()
 
     def end_game(self):
-        pass
-
-    def init_lvl(self, level):
         pass
 
     def change_lvl(self, level):
