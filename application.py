@@ -23,6 +23,7 @@ class Application:
             for event in p.event.get():
                 if event.type == p.QUIT:
                     self.close_app()
+        p.quit()
 
     @property
     def is_running(self):
