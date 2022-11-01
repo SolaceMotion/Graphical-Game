@@ -10,7 +10,5 @@ class Tile(Character):
         self.wall = wall
         self.__vx = 0
         self.__vy = 0
-
-
         
             
