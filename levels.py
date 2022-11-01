@@ -5,7 +5,7 @@ from direction import Direction
 from config import TILES, RESOLUTION
 
 def generate_map(map):
-    return [[Tile(TILES[tile], tile == "red", pos=(j * RESOLUTION, i * RESOLUTION)) for j, tile in enumerate(row)] for i, row in enumerate(map)]
+    return [[Tile(TILES[tile], tile == "red", pos = (j * RESOLUTION, i * RESOLUTION)) for j, tile in enumerate(row)] for i, row in enumerate(map)]
 
 temp = [["brown" for _ in range(16)] for _ in range(9)]
 temp[5][5] = "red"

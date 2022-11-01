@@ -14,8 +14,10 @@ class Character:
         self.__rect = p.Rect(pos, size)
         self.__w, self.__h = size
 
-    def get_pos(self): return (self.__x, self.__y)
     def get_sprite(self): return self.__sprite
+    def get_rect(self): return self.__rect
+    def set_pos(self, pos): self.__x, self.__y = pos
+    def get_pos(self): return (self.__x, self.__y)
 
     def get_rect(self): return self.__rect
 
@@ -58,7 +60,7 @@ class Character:
             door = Direction.LEFT
         if self.__x > WIDTH - self.__w:
             door = Direction.RIGHT
-
+        
         # Prevent from going outside play area
         self.__x = self.__x % (WIDTH - self.__w)
         self.__y = self.__y % (HEIGHT - self.__h)
