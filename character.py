@@ -29,6 +29,22 @@ class Character:
         # check collision
         return character.colidable and p.Rect.colliderect(self.__rect, character.get_rect())
             
+        """ 
+         if tile.wall and p.Rect.colliderect(self.__rect, tile.get_rect()):
+            
+            if direction == Direction.UP:
+                 
+                self.__y += self.__vy * dt / 10
+
+            if direction == Direction.DOWN:
+                self.__y -= self.__vy * dt / 10
+
+            if direction == Direction.LEFT:
+                self.__x += self.__vx * dt / 10
+
+            if direction == Direction.RIGHT:
+                self.__x -= self.__vx * dt / 10
+         """    
             
     def move(self, direction: Direction, dt: float, map):
         pre_move = self.get_pos()
