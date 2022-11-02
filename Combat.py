@@ -42,15 +42,13 @@ class Combat():
         while self.running:
             clock.tick(60)
 
-            #if self.enemy.get_pos() [1] == self.player.get_pos()[1]-50 and self.enemy.get_pos() [0]== self.player.get_pos()[0] :
             if self.player.collision(self.enemy):
-                print('GAME OVER, YOU LOST!', 'Game points:', self.player.points)
+                print('GAME OVER, YOU LOST!', 'Game Points:', self.player.points)
                 break
             elif self.player.points >= 15:
                 print('Congrats, YOU WON!!!')
                 break
 
-            #self.enemy_boll_loc[1] += a
             x, y = self.enemy.get_pos()
             y += self.enemy.speed
             self.enemy.set_pos((x, y))
@@ -59,7 +57,6 @@ class Combat():
                 self.player.points +=1
                 if self.player.points % 5 == 0:
                     self.enemy.speed += 3
-                #print (b,a)
                 x, y = self.enemy.get_pos()
                 y = -100
                 self.enemy.set_pos((x, y))
@@ -82,7 +79,6 @@ class Combat():
             self.screen.blit(self.player.get_sprite(),self.player.get_pos())
             self.screen.blit(self.enemy.get_sprite(), self.enemy.get_pos())
             pygame.display.update()
-            #pygame.display.update()
 
 
         pygame.quit()
