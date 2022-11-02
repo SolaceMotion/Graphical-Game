@@ -5,15 +5,20 @@ from direction import Direction
 from config import TILES, RESOLUTION
 
 def generate_map(map):
-    return [[Tile(TILES[tile], tile == "red", pos = (j * RESOLUTION, i * RESOLUTION)) for j, tile in enumerate(row)] for i, row in enumerate(map)]
+    return [[Tile(TILES[tile], colidable =  tile == "red", pos = (j * RESOLUTION, i * RESOLUTION)) for j, tile in enumerate(row)] for i, row in enumerate(map)]
 
 temp = [["brown" for _ in range(16)] for _ in range(9)]
-temp[5][5] = "red"
+temp[0][0] = "red"
+temp[0][-1] = "red"
+temp[-1][0] = "red"
+temp[-1][-1] = "red"
 
 level_1 = generate_map(temp)
 level_1 = Level(level_1)
 
-temp = [["red" for _ in range(16)] for _ in range(9)]
+temp = [["brown" for _ in range(16)] for _ in range(9)]
+for i in range(16): temp[0][i], temp[8][i] = "red", "red"
+for j in range(9): temp[j][0] = "red"
 
 level_2 = generate_map(temp)
 level_2 = Level(level_2)

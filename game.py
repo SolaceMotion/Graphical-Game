@@ -37,20 +37,27 @@ class Game:
 
     def handle_movement(self, pressed, dt: float):
         door = False
-        if pressed[p.K_UP]    : door = self.player.move(Direction.UP, dt)
-        if pressed[p.K_DOWN]  : door = self.player.move(Direction.DOWN, dt)
-        if pressed[p.K_LEFT]  : door = self.player.move(Direction.LEFT, dt)
-        if pressed[p.K_RIGHT] : door = self.player.move(Direction.RIGHT, dt)
-        #if pressed[p.K_SPACE] : self.player.jump() # TODO Make a jump function.
+        map = self.current_level.map
+
+        if pressed[p.K_UP]:
+            entering = self.player.move(Direction.UP, dt, map)
+            if entering: door = entering
+        if pressed[p.K_DOWN]:
+            entering = self.player.move(Direction.DOWN, dt, map)
+            if entering: door = entering
+        if pressed[p.K_LEFT]:
+            entering = self.player.move(Direction.LEFT, dt, map)
+            if entering: door = entering
+        if pressed[p.K_RIGHT]:
+            entering = self.player.move(Direction.RIGHT, dt, map)
+            if entering: door = entering
+
         if door: self.change_lvl(self.current_level.get_bordering(door))
 
     def read_input(self):
         return p.key.get_pressed()
 
     def end_game(self):
-        pass
-
-    def init_lvl(self, level):
         pass
 
     def change_lvl(self, level):
