@@ -1,0 +1,9 @@
+How to use the tool.
+While in directory GRAPHICAL-GAME execute the following comand in your terminal:
+
+python3 ./designtools/design_map.py <filename>
+
+To save close the window normaly.
+
+CAUTION!
+this tool can not be used to edit existin levels. using the same name twice will remove any previous content.

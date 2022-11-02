@@ -1,5 +1,3 @@
-from pygame.display import set_mode 
-
 # screen
 WIDTH = 800
 HEIGHT = 450

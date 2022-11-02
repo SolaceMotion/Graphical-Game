@@ -4,7 +4,7 @@ from player import Player
 from state import State
 
 from config import RESOLUTION, PLAYER_SPRITE
-from levels import level_1
+from levels import _level_1
 
 
 class Game:
@@ -14,11 +14,8 @@ class Game:
         self.fps = fps
         self.now = p.time.get_ticks()
         self.previous = p.time.get_ticks()
-        self.current_level = level_1
+        self.current_level = _level_1
         self.state = State.ON_MAP
-
-    def start_game(self):
-        pass
 
     def tick(self, screen: p.Surface):
         if self.state == State.ON_MAP:
@@ -57,9 +54,6 @@ class Game:
     def read_input(self):
         return p.key.get_pressed()
 
-    def end_game(self):
-        pass
-
     def change_lvl(self, level):
         self.current_level = level
 
@@ -68,8 +62,5 @@ class Game:
             for tile in row:
                 screen.blit(tile.get_sprite(), tile.get_pos())
 
-    def start_clock(self):
-        pass
-
-    def stop_clock(self):
+    def end_game(self):
         pass

@@ -1,6 +1,5 @@
 from config import RESOLUTION
 from character import Character
-import pygame as p
 
 class Tile(Character):
     def __init__(self, sprite: str, *, pos = (20, 20), colidable = False) -> None:
