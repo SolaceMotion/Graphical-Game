@@ -39,10 +39,18 @@ class Game:
         door = False
         map = self.current_level.map
 
-        if pressed[p.K_UP]    : door = self.player.move(Direction.UP, dt, map)
-        if pressed[p.K_DOWN]  : door = self.player.move(Direction.DOWN, dt, map)
-        if pressed[p.K_LEFT]  : door = self.player.move(Direction.LEFT, dt, map)
-        if pressed[p.K_RIGHT] : door = self.player.move(Direction.RIGHT, dt, map)
+        if pressed[p.K_UP]:
+            entering = self.player.move(Direction.UP, dt, map)
+            if entering: door = entering
+        if pressed[p.K_DOWN]:
+            entering = self.player.move(Direction.DOWN, dt, map)
+            if entering: door = entering
+        if pressed[p.K_LEFT]:
+            entering = self.player.move(Direction.LEFT, dt, map)
+            if entering: door = entering
+        if pressed[p.K_RIGHT]:
+            entering = self.player.move(Direction.RIGHT, dt, map)
+            if entering: door = entering
 
         if door: self.change_lvl(self.current_level.get_bordering(door))
 
