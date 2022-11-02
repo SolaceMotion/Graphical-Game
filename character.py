@@ -15,10 +15,10 @@ class Character:
 
     def get_sprite(self): return self.__sprite
     def get_rect(self): return self.__rect
-    def set_pos(self, pos): self.__x, self.__y = pos
     def get_pos(self): return (self.__x, self.__y)
-
-    def get_rect(self): return self.__rect
+    def set_pos(self, pos):
+        self.__x, self.__y = pos
+        self.__rect = p.Rect(pos, (self.__w, self.__h))
 
     def load_sprite(self, sprite, size):
         sprite = p.image.load(sprite)
