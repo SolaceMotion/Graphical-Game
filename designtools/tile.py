@@ -1,6 +1,5 @@
 from config import RESOLUTION
 from character import Character
-from player import Player
 import pygame as p
 
 class Tile(Character):
@@ -10,5 +9,3 @@ class Tile(Character):
         self.__vx = 0
         self.__vy = 0
         self.colidable = colidable
-        
-            
