@@ -1,5 +1,6 @@
-from config import RESOLUTION
-from character import Character
+from .character import Character
+
+from .config import RESOLUTION
 
 class Tile(Character):
     def __init__(self, sprite: str, *, pos = (20, 20), colidable = False) -> None:

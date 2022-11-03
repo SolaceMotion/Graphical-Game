@@ -1,6 +1,6 @@
-from tile import Tile
-from enemy import Enemy
-from direction import Direction
+from .tile import Tile
+from .enemy import Enemy
+from .direction import Direction
 
 
 class Level:

@@ -1,7 +1,8 @@
 import pygame as p
-from direction import Direction
 
-from config import WIDTH, HEIGHT
+from .direction import Direction
+
+from .config import WIDTH, HEIGHT
 
 
 class Character:

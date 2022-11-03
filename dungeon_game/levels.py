@@ -1,14 +1,10 @@
-from tile import Tile
-from level import Level
-from direction import Direction
-from enemy import Enemy
+from .tile import Tile
+from .level import Level
+from .direction import Direction
+from .enemy import Enemy
 
-from config import TILES, RESOLUTION, BOSS_SPRITE, ENEMY_SPRITE, ENEMY2_SPRITE
-import level_1
-import level_2
-import level_3
-import level_4
-import level_5
+from .config import TILES, RESOLUTION, BOSS_SPRITE, ENEMY_SPRITE, ENEMY2_SPRITE
+from . import level_1, level_2, level_3, level_4, level_5
 
 def generate_map(map):
     return [[Tile(TILES[tile], colidable =  tile == "red", pos = (j * RESOLUTION, i * RESOLUTION)) for j, tile in enumerate(row)] for i, row in enumerate(map)]

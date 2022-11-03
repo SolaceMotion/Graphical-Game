@@ -1,4 +1,4 @@
-from enemy import Enemy
+from .enemy import Enemy
 
 
 class Boss(Enemy):

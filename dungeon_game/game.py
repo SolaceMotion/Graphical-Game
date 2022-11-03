@@ -1,11 +1,12 @@
 import pygame as p
-from direction import Direction
-from player import Player
-from state import State
-from combat import Combat
 
-from config import RESOLUTION, PLAYER_SPRITE, ENEMY_HEALTH
-from levels import _level_1
+from .direction import Direction
+from .player import Player
+from .state import State
+from .combat import Combat
+
+from .config import RESOLUTION, PLAYER_SPRITE, ENEMY_HEALTH
+from .levels import _level_1
 
 
 class Game:

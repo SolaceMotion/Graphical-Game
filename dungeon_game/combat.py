@@ -1,10 +1,11 @@
 import pygame
 from pygame.locals import*
 import random
-from config import HEIGHT, WIDTH, ENEMY_HEALTH
 
-from player import Player
-from enemy import Enemy
+from .config import HEIGHT, WIDTH, ENEMY_HEALTH
+
+from .player import Player
+from .enemy import Enemy
 
 
 class Combat():

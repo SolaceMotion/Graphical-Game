@@ -1,7 +1,10 @@
-from config import HEIGHT, WIDTH, FONT, ENEMY_HEALTH
 import pygame as p
-from game import Game
-from state import State
+
+from .game import Game
+from .state import State
+
+from .config import HEIGHT, WIDTH, FONT, ENEMY_HEALTH
+
 
 class Application:
     def __init__(self, width: int, height: int, clock: p.time.Clock) -> None:
@@ -68,7 +71,7 @@ class Application:
     
     def game_over(self, screen: p.Surface):
         game_over_txt = self.render_text("Game over!")
-        if self.game.player.points == ENEMY_HEALTH:
+        if self.game.player.points == ENEMY_HEALTH * 3:
             winner_txt = self.render_text("Congratulations! You win.")
         else:
             winner_txt = self.render_text("You lose!")

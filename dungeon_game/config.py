@@ -19,4 +19,4 @@ TILES = {"brown": BROWN_TILE, "red": RED_TILE, "yellow": YELLOW_TILE, "green": G
 
 # general settings
 FONT = "ComicSans"
-ENEMY_HEALTH = 1
+ENEMY_HEALTH = 15

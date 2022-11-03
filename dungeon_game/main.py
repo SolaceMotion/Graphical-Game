@@ -1,6 +1,8 @@
 import pygame as p
-from application import Application
-from config import WIDTH, HEIGHT
+
+from .application import Application
+
+from .config import WIDTH, HEIGHT
 
 clock = p.time.Clock()
 prev = p.time.get_ticks()
