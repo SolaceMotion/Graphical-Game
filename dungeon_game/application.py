@@ -36,6 +36,7 @@ class Application:
                 else:
                     # Render and continue time if game is not paused
                     self.game.tick(screen)
+                    self.display_score(screen)
 
             p.display.flip()
  
@@ -59,31 +60,45 @@ class Application:
     def is_running(self):
         return self.__running
 
+    def display_score(self, screen: p.Surface):
+        points = self.game.player.points
+        text = self.render_text(f"Score: {str(points)}")
+        screen.blit(text, (10,2))
+
     def main_menu(self, screen: p.Surface):
-        text = self.render_text("Play Game")
         screen.fill((30,30,30))
+        text = self.render_text("Play Game")
 
         #Store a rect object to use for checking if user clicks within region of the box on menu
-        self.box_rect = p.Rect(WIDTH / 2 - 100, HEIGHT/2 - 50, 200, 50)
+        self.box_rect = p.Rect(self.width / 2 - 100, self.height / 2 - 50, 200, 50)
         
         p.draw.rect(screen, (10,10,10), self.box_rect)
-        screen.blit(text,(WIDTH / 2 -80, HEIGHT / 2 - 50))
-    
+        screen.blit(text,((self.width - text.get_width()) / 2, (self.height - text.get_height()) / 2 - 28))
+
+        objective_txt1 = self.render_text("Your objective is to defeat all the enemies")
+        objective_txt2 = self.render_text("scattered around the map. Good luck!")
+
+        screen.blit(objective_txt1, ((self.width - objective_txt1.get_width()) / 2, self.height / 2 + 20))
+        screen.blit(objective_txt2, ((self.width - objective_txt2.get_width()) / 2, self.height / 2 + 60))
+
     def game_over(self, screen: p.Surface):
-        game_over_txt = self.render_text("Game over!")
+        game_over_txt = self.render_text("Game Over!")
+        # 45 points to beat the game
         if self.game.player.points == ENEMY_HEALTH * 3:
-            winner_txt = self.render_text("Congratulations! You win.")
+            win_txt = "Congratulations, You Win! :D"
         else:
-            winner_txt = self.render_text("You lose!")
-        score_txt = self.render_text(f"score: {self.game.player.points}")
+            win_txt = "Sorry, You Lost! :("
+
+        winner_txt = self.render_text(win_txt)
+        score_txt = self.render_text(f"Final Score: {self.game.player.points}")
 
         game_over_size = game_over_txt.get_width()
         winner_size = winner_txt.get_width()
         score_size = score_txt.get_width()
 
-        screen.blit(game_over_txt, ((WIDTH - game_over_size) // 2, HEIGHT // 2 - 100))
-        screen.blit(winner_txt, ((WIDTH - winner_size) // 2, HEIGHT // 2 - 50))
-        screen.blit(score_txt, ((WIDTH - score_size) // 2, HEIGHT // 2))
+        screen.blit(game_over_txt, ((self.width - game_over_size) // 2, self.height // 2 - 100))
+        screen.blit(winner_txt, ((self.width - winner_size) // 2, self.height // 2 - 50))
+        screen.blit(score_txt, ((self.width - score_size) // 2, self.height // 2))
 
     def render_text(self, text: str) -> p.Surface:
         return self.font.render(text, True, (255, 255, 255))

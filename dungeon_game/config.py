@@ -15,6 +15,9 @@ RED_TILE = "sprites/bgr.tiles.dark_red.png"
 YELLOW_TILE = "sprites/bgr.tiles.dark_yellow.png"
 GREEN_TILE = "sprites/bgr.tiles.green.png"
 
+# door sprite
+DOOR = "sprites/boss_door.png"
+
 TILES = {"brown": BROWN_TILE, "red": RED_TILE, "yellow": YELLOW_TILE, "green": GREEN_TILE}
 
 # general settings

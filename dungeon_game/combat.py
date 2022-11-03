@@ -7,7 +7,7 @@ from .config import HEIGHT, WIDTH, ENEMY_HEALTH
 from .player import Player
 from .enemy import Enemy
 
-
+#Combat state
 class Combat():
     def __init__(self, player: Player, enemy: Enemy):
         self.width, self.height = (WIDTH, HEIGHT)
@@ -18,8 +18,7 @@ class Combat():
         self.player = player
         self.player.set_pos((self.width // 2 + self.road_w // 4, int(self.height * 4 //5)))
         self.enemy = enemy
-        self.enemy.set_pos ((self.left_lane, -50))
-
+        self.enemy.set_pos((self.left_lane, -50))
         self.running = True
 
     def draw(self, screen: pygame.Surface):
@@ -28,7 +27,6 @@ class Combat():
         pygame.draw.rect(screen,(255,255,60),(self.width//2 - self.road_mark//2, 0, self.road_mark, self.height ))
         pygame.draw.rect(screen,(255,255,255),(self.width//2 - self.road_w//2 + self.road_mark*2, 0, self.road_mark, self.height ))
         pygame.draw.rect(screen,(255,255,255),(self.width//2 +  self.road_w//2 - self.road_mark*3, 0, self.road_mark, self.height ))
-
 
     def run_combat(self, clock: pygame.time.Clock, fps: int, screen: pygame.Surface):
 
@@ -47,7 +45,8 @@ class Combat():
             self.enemy.set_pos((x, y))
 
             if self.enemy.get_pos()[1] >= self.height:
-                points +=1
+                points += 1
+                #Increase speed every 5th point
                 if points % 5 == 0:
                     self.enemy.speed += 3
                 x, y = self.enemy.get_pos()
@@ -73,6 +72,5 @@ class Combat():
             screen.blit(self.player.get_sprite(),self.player.get_pos())
             screen.blit(self.enemy.get_sprite(), self.enemy.get_pos())
             pygame.display.update()
-
 
         self.player.points += points

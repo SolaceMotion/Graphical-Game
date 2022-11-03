@@ -1,16 +1,19 @@
 from .tile import Tile
 from .enemy import Enemy
 from .direction import Direction
+from .door import Door
 
 
 class Level:
-    def __init__(self, map: list[list[Tile]], enemy: Enemy = None) -> None:
+    def __init__(self, map: list[list[Tile]], enemy: Enemy = None, door: Door = None):
         self.map = map
+        self.door = door
         self.enemy = enemy
         self.left = None
         self.right = None
         self.up = None
         self.down = None
+
 
     def set_bordering(self, level, direction: Direction):
         if direction == Direction.LEFT: self.left = level

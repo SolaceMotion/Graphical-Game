@@ -5,12 +5,12 @@ from .player import Player
 from .state import State
 from .combat import Combat
 
-from .config import RESOLUTION, PLAYER_SPRITE, ENEMY_HEALTH
+from .config import RESOLUTION, PLAYER_SPRITE, ENEMY_HEALTH, FONT, WIDTH, HEIGHT
 from .levels import _level_1
 
 
 class Game:
-    def __init__(self, clock: p.time.Clock, fps: int = 60) -> None:
+    def __init__(self, clock: p.time.Clock, fps: int = 60):
         self.clock = clock
         self.player = Player(PLAYER_SPRITE, size = (RESOLUTION, RESOLUTION))
         self.fps = fps
@@ -18,8 +18,14 @@ class Game:
         self.previous = p.time.get_ticks()
         self.current_level = _level_1
         self.state = State.ON_MAP
+        self.font = p.font.SysFont(FONT, 25)
+
+    def render_text(self, text: str) -> p.Surface:
+        return self.font.render(text, True, (255, 255, 255))
 
     def tick(self, screen: p.Surface):
+        pre_move = self.player.get_pos()
+        
         if self.state == State.ON_MAP:
             self.clock.tick(self.fps)
             dt = self.update_time()
@@ -27,9 +33,28 @@ class Game:
             self.handle_movement(keys_pressed, dt)
             self.draw_sceen(screen)
             screen.blit(self.player.get_sprite(), self.player.get_pos())
+
+            # Render door if all goons are not yet defeated 
+            if self.current_level == _level_1 and self.player.points != ENEMY_HEALTH * 2:
+                txt = self.render_text("This door unlocks when all goons are defeated.")
+
+                screen.blit(self.current_level.door.get_sprite(), self.current_level.door.get_pos())
+
+                if self.player.collision(self.current_level.door):
+                    self.player.set_pos(pre_move)
+                    screen.blit(txt, ((WIDTH - txt.get_width()) / 2 , (HEIGHT - txt.get_height()) / 2))
+
+
+            #If there is an enemy on current level
             if self.current_level.enemy != None:
+                # Make enemy move towards player
+                self.current_level.enemy.move(self.player)
+
+                #Render enemy if they are alive
                 if self.current_level.enemy.alive:
                     screen.blit(self.current_level.enemy.get_sprite(), self.current_level.enemy.get_pos())
+
+                    #If player collides with enemy, begin combat state
                     if self.player.collision(self.current_level.enemy):
                         self.state = State.IN_COMBAT
         
@@ -45,11 +70,11 @@ class Game:
                 self.state = State.ON_MAP
 
 
-    def update_time(self):
+    def update_time(self) -> float:
         dt = self.now - self.previous
         self.previous = self.now
         self.now = p.time.get_ticks()
-        return dt
+        return float(dt)
 
     def handle_movement(self, pressed, dt: float):
         door = False
