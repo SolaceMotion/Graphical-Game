@@ -16,3 +16,7 @@ YELLOW_TILE = "sprites/bgr.tiles.dark_yellow.png"
 GREEN_TILE = "sprites/bgr.tiles.green.png"
 
 TILES = {"brown": BROWN_TILE, "red": RED_TILE, "yellow": YELLOW_TILE, "green": GREEN_TILE}
+
+# general settings
+FONT = "ComicSans"
+ENEMY_HEALTH = 1

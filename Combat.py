@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import*
 import random
-from config import PLAYER_SPRITE, BOSS_SPRITE, HEIGHT, WIDTH
+from config import HEIGHT, WIDTH, ENEMY_HEALTH
 
 from player import Player
 from enemy import Enemy
@@ -38,7 +38,7 @@ class Combat():
             if self.player.collision(self.enemy):
                 print('GAME OVER, YOU LOST!', 'Game Points:', points)
                 break
-            elif points >= 15:
+            elif points >= ENEMY_HEALTH:
                 print('Congrats, YOU WON!!!')
                 self.enemy.alive = False
                 break
@@ -62,6 +62,7 @@ class Combat():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     self.running = False
+                    quit()
                 if event.type == KEYDOWN:
                     if event.key in [K_a, K_LEFT]:
                         self.player.set_pos((self.left_lane, self.height*4//5))
@@ -76,12 +77,3 @@ class Combat():
 
 
         self.player.points += points
-
-
-
-def main():
-    combat = Combat(Player(PLAYER_SPRITE), Enemy(BOSS_SPRITE))
-    combat.run_combat()
-
-if __name__ == '__main__':
-    main()

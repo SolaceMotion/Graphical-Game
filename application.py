@@ -1,16 +1,18 @@
-from config import HEIGHT, WIDTH
+from config import HEIGHT, WIDTH, FONT, ENEMY_HEALTH
 import pygame as p
 from game import Game
 from state import State
 
 class Application:
     def __init__(self, width: int, height: int, clock: p.time.Clock) -> None:
+        p.init()
         self.__running = True
         self.clock = clock
         self.width = width
         self.height = height
         self.resolution = (width, height)
         self.start_game = False
+        self.font = p.font.SysFont(FONT, 35)
 
     def init_game(self):
         self.game = Game(self.clock)
@@ -21,15 +23,16 @@ class Application:
             
         while self.is_running:
             screen.fill((0, 0, 0))
-            if self.game.state == State.GAME_OVER:
-                pass
             
             # Show menu
             if not self.start_game:
                 self.main_menu(screen)
             else:
-                # Render and continue time if game is not paused
-                self.game.tick(screen)
+                if self.game.state == State.GAME_OVER:
+                    self.game_over(screen)
+                else:
+                    # Render and continue time if game is not paused
+                    self.game.tick(screen)
 
             p.display.flip()
  
@@ -54,9 +57,7 @@ class Application:
         return self.__running
 
     def main_menu(self, screen: p.Surface):
-        p.init()
-        font = p.font.SysFont("ComicSans", 35)
-        text = font.render("Play Game", True, (255,255,255))
+        text = self.render_text("Play Game")
         screen.fill((30,30,30))
 
         #Store a rect object to use for checking if user clicks within region of the box on menu
@@ -65,8 +66,24 @@ class Application:
         p.draw.rect(screen, (10,10,10), self.box_rect)
         screen.blit(text,(WIDTH / 2 -80, HEIGHT / 2 - 50))
     
-    def game_over(self):
-        pass
+    def game_over(self, screen: p.Surface):
+        game_over_txt = self.render_text("Game over!")
+        if self.game.player.points == ENEMY_HEALTH:
+            winner_txt = self.render_text("Congratulations! You win.")
+        else:
+            winner_txt = self.render_text("You lose!")
+        score_txt = self.render_text(f"score: {self.game.player.points}")
+
+        game_over_size = game_over_txt.get_width()
+        winner_size = winner_txt.get_width()
+        score_size = score_txt.get_width()
+
+        screen.blit(game_over_txt, ((WIDTH - game_over_size) // 2, HEIGHT // 2 - 100))
+        screen.blit(winner_txt, ((WIDTH - winner_size) // 2, HEIGHT // 2 - 50))
+        screen.blit(score_txt, ((WIDTH - score_size) // 2, HEIGHT // 2))
+
+    def render_text(self, text: str) -> p.Surface:
+        return self.font.render(text, True, (255, 255, 255))
 
     def close_app(self):
         self.__running = not self.__running
