@@ -1,9 +1,9 @@
 # Graphical-Game
-Dungeon game by HOG.\n
-A school project.\n
-run play.py to start the game.\n
+Dungeon game by HOG.<br>
+A school project.<br>
+run play.py to start the game.<br>
 
 # Participants
-Hampus Siik\n
-Oliver Eriksson\n
-Ahmed Gelle Ismail\n
+Hampus Siik<br>
+Oliver Eriksson<br>
+Ahmed Gelle Ismail<br>
