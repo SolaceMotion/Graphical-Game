@@ -36,10 +36,8 @@ class Combat():
             clock.tick(fps)
 
             if self.player.collision(self.enemy):
-                print('GAME OVER, YOU LOST!', 'Game Points:', points)
                 break
             elif points >= ENEMY_HEALTH:
-                print('Congrats, YOU WON!!!')
                 self.enemy.alive = False
                 break
 

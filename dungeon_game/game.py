@@ -36,7 +36,6 @@ class Game:
             current_pos = self.player.get_pos()
             combat = Combat(self.player, self.current_level.enemy)
             combat.run_combat(self.clock, self.fps, screen)
-            print(self.player.points)
             if self.current_level.enemy.alive or self.player.points == ENEMY_HEALTH * 3:
                 self.state = State.ON_MAP
                 self.end_game()
