@@ -1,7 +1,7 @@
 # screen
-WIDTH = 800
-HEIGHT = 450
 RESOLUTION = 50
+WIDTH = RESOLUTION * 16
+HEIGHT = RESOLUTION * 9
 
 # sprites
 PLAYER_SPRITE = "sprites/player.png"

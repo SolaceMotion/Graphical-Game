@@ -1,10 +1,12 @@
 from tile import Tile
+from enemy import Enemy
 from direction import Direction
 
 
 class Level:
-    def __init__(self, map: list[list[Tile]]) -> None:
+    def __init__(self, map: list[list[Tile]], enemy: Enemy = None) -> None:
         self.map = map
+        self.enemy = enemy
         self.left = None
         self.right = None
         self.up = None

@@ -2,6 +2,7 @@ import pygame as p
 from direction import Direction
 from player import Player
 from state import State
+from combat import Combat
 
 from config import RESOLUTION, PLAYER_SPRITE
 from levels import _level_1
@@ -25,6 +26,24 @@ class Game:
             self.handle_movement(keys_pressed, dt)
             self.draw_sceen(screen)
             screen.blit(self.player.get_sprite(), self.player.get_pos())
+            if self.current_level.enemy != None:
+                if self.current_level.enemy.alive:
+                    screen.blit(self.current_level.enemy.get_sprite(), self.current_level.enemy.get_pos())
+                    if self.player.collision(self.current_level.enemy):
+                        self.state = State.IN_COMBAT
+        
+        if self.state == State.IN_COMBAT:
+            current_pos = self.player.get_pos()
+            combat = Combat(self.player, self.current_level.enemy)
+            combat.run_combat(self.clock, self.fps, screen)
+            print(self.player.points)
+            if self.current_level.enemy.alive or self.player.points == 45:
+                self.state = State.ON_MAP
+                self.end_game()
+            else:
+                self.player.set_pos(current_pos)
+                self.state = State.ON_MAP
+
 
     def update_time(self):
         dt = self.now - self.previous
@@ -63,4 +82,4 @@ class Game:
                 screen.blit(tile.get_sprite(), tile.get_pos())
 
     def end_game(self):
-        pass
+        self.state = State.GAME_OVER

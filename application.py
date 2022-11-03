@@ -1,6 +1,7 @@
 from config import HEIGHT, WIDTH
 import pygame as p
 from game import Game
+from state import State
 
 class Application:
     def __init__(self, width: int, height: int, clock: p.time.Clock) -> None:
@@ -20,6 +21,8 @@ class Application:
             
         while self.is_running:
             screen.fill((0, 0, 0))
+            if self.game.state == State.GAME_OVER:
+                pass
             
             # Show menu
             if not self.start_game:
@@ -61,6 +64,9 @@ class Application:
         
         p.draw.rect(screen, (10,10,10), self.box_rect)
         screen.blit(text,(WIDTH / 2 -80, HEIGHT / 2 - 50))
+    
+    def game_over(self):
+        pass
 
     def close_app(self):
         self.__running = not self.__running
