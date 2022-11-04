@@ -2,6 +2,7 @@
 RESOLUTION = 50
 WIDTH = RESOLUTION * 16
 HEIGHT = RESOLUTION * 9
+ICON = "sprites/player.png"
 
 # sprites
 PLAYER_SPRITE = "sprites/player.png"
