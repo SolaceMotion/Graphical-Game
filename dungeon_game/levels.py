@@ -15,11 +15,11 @@ def generate_map(map):
 
 
 enemy_1 = Enemy(sprite=ENEMY_SPRITE, size=(
-    RESOLUTION, RESOLUTION), pos=(100, 200), speed=3)
+    RESOLUTION, RESOLUTION), pos=(100, 200), speed=4)
 enemy_2 = Enemy(sprite=ENEMY2_SPRITE, size=(
-    RESOLUTION, RESOLUTION), pos=(375, 200), speed=4)
+    RESOLUTION, RESOLUTION), pos=(375, 200), speed=5)
 boss = Enemy(sprite=BOSS_SPRITE, size=(
-    RESOLUTION*2, RESOLUTION*2), pos=(350, 175), speed=6)
+    RESOLUTION*2, RESOLUTION*2), pos=(350, 175), speed=8)
 
 door = Door(sprite=DOOR, size=(RESOLUTION * 3, RESOLUTION * 2),
             pos=(floor(WIDTH / 2 - RESOLUTION*3/2) - 4, -49))
