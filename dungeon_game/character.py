@@ -4,7 +4,7 @@ from .config import WIDTH, HEIGHT
 
 
 class Character:
-    def __init__(self, sprite: str, pos = (20, 20), size = (60, 60), colidable = False) -> None:
+    def __init__(self, sprite: str, pos=(20, 20), size=(60, 60), colidable=False) -> None:
         self._x, self._y = pos
         self.__vx = 1
         self.__vy = 1
@@ -15,6 +15,7 @@ class Character:
     def get_sprite(self) -> p.Surface: return self.__sprite
     def get_rect(self) -> p.Rect: return self._rect
     def get_pos(self) -> tuple[float]: return (self._x, self._y)
+
     def set_pos(self, pos):
         self._x, self._y = pos
         self.set_rect(pos)
@@ -29,14 +30,18 @@ class Character:
 
     def collision(self, character) -> bool:
         # check collision
-        return character.colidable and p.Rect.colliderect(self._rect, character.get_rect())  
-            
+        return character.colidable and p.Rect.colliderect(self._rect, character.get_rect())
+
     def move(self, direction: Direction, dt: float, map):
         pre_move = self.get_pos()
-        if direction == Direction.UP    : self._y -= self.__vy * dt / 10
-        if direction == Direction.DOWN  : self._y += self.__vy * dt / 10
-        if direction == Direction.LEFT  : self._x -= self.__vx * dt / 10
-        if direction == Direction.RIGHT : self._x += self.__vx * dt / 10
+        if direction == Direction.UP:
+            self._y -= self.__vy * dt / 10
+        if direction == Direction.DOWN:
+            self._y += self.__vy * dt / 10
+        if direction == Direction.LEFT:
+            self._x -= self.__vx * dt / 10
+        if direction == Direction.RIGHT:
+            self._x += self.__vx * dt / 10
 
         door = False
         if self._y < 0:
@@ -47,7 +52,7 @@ class Character:
             door = Direction.LEFT
         if self._x > WIDTH - self.__w:
             door = Direction.RIGHT
-        
+
         # Check collisions on current map
         self.set_rect(self.get_pos())
         for row in map:
