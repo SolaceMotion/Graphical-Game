@@ -4,7 +4,7 @@ from .config import WIDTH, HEIGHT
 
 
 class Character:
-    def __init__(self, sprite: str, pos=(20, 20), size=(60, 60), colidable=False) -> None:
+    def __init__(self, sprite: str, pos=(20, 20), size=(60, 60)) -> None:
         self._x, self._y = pos
         self.__vx = 1
         self.__vy = 1

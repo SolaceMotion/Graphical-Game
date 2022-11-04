@@ -3,7 +3,7 @@ import pygame as p
 from .game import Game
 from .state import State
 
-from .config import HEIGHT, WIDTH, FONT, ENEMY_HEALTH
+from .config import FONT, ENEMY_HEALTH
 
 
 class Application:
