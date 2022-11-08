@@ -9,7 +9,7 @@ from .config import FONT, ENEMY_HEALTH, ICON
 class Application:
     def __init__(self, width: int, height: int, clock: p.time.Clock) -> None:
         p.init()
-        p.display.set_caption('Dungeon game')
+        p.display.set_caption('Banoras castle')
         p.display.set_icon(p.image.load(ICON))
         self.__running = True
         self.clock = clock
