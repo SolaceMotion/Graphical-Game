@@ -19,11 +19,8 @@ class Application:
         self.start_game = False
         self.font = p.font.SysFont(FONT, 35)
 
-    def init_game(self):
-        self.game = Game(self.clock)
-
     def run(self):
-        self.init_game()
+        self.game = Game(self.clock)
         screen: p.Surface = p.display.set_mode(self.resolution)
 
         while self.is_running:

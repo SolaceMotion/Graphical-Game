@@ -11,7 +11,7 @@ class Enemy(Character):
         self.alive = True
         self.speed_factor = 0
 
-    def distance_to_player(self, player: Player) -> tuple[float]:
+    def distance_to_player(self, player: Player):
         x, y = self.get_pos()
         p_x, p_y = player.get_pos()
 

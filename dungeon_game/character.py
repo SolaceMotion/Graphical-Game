@@ -14,22 +14,22 @@ class Character:
 
     def get_sprite(self) -> p.Surface: return self.__sprite
     def get_rect(self) -> p.Rect: return self._rect
-    def get_pos(self) -> tuple[float]: return (self._x, self._y)
+    def get_pos(self): return (self._x, self._y)
 
     def set_pos(self, pos):
         self._x, self._y = pos
         self.set_rect(pos)
 
-    def set_rect(self, pos: tuple[float]):
+    def set_rect(self, pos):
         self._rect = p.Rect(pos, (self.__w, self.__h))
 
-    def load_sprite(self, sprite: p.Surface, size: tuple[float]) -> p.Surface:
+    def load_sprite(self, sprite: p.Surface, size) -> p.Surface:
         sprite = p.image.load(sprite)
         sprite = p.transform.scale(sprite, size)
         return sprite
 
     def collision(self, character) -> bool:
-        # check collision
+        # Check collision
         return character.colidable and p.Rect.colliderect(self._rect, character.get_rect())
 
     def move(self, direction: Direction, dt: float, map):
